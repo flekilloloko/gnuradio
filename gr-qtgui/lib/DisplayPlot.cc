@@ -55,7 +55,7 @@ DisplayPlot::DisplayPlot(int nplots, QWidget* parent)
   setPaletteColor(default_palette_color);
 
   d_panner = new QwtPlotPanner(canvas());
-  d_panner->setAxisEnabled(QwtPlot::yRight, false);
+  d_panner->setAxisEnabled(QwtPlot::yRight, true);
   d_panner->setMouseButton(Qt::MidButton, Qt::ControlModifier);
 
   // emit the position of clicks on widget
@@ -113,6 +113,7 @@ void
 DisplayPlot::setYaxis(double min, double max)
 {
   setAxisScale(QwtPlot::yLeft, min, max);
+  //setAxisScale(QwtPlot::yRight, min, max);
   if(!d_autoscale_state)
     d_zoomer->setZoomBase();
 }
