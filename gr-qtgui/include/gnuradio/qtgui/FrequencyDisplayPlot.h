@@ -54,8 +54,8 @@ public:
   virtual ~FrequencyDisplayPlot();
 
   void setFrequencyRange(const double, const double,
-			 const double units=1000.0,
-			 const std::string &strunits = "kHz");
+			 const double units=1.0,
+			 const std::string &strunits = "Hz");
   double getStartFrequency()const;
   double getStopFrequency()const;
 
