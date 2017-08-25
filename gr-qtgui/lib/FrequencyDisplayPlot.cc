@@ -95,8 +95,9 @@ FrequencyDisplayPlot::FrequencyDisplayPlot(int nplots, QWidget* parent)
 
   d_ymin = -120;
   d_ymax = 10;
-  setAxisScaleEngine(QwtPlot::yLeft, new QwtLinearScaleEngine);
+  setAxisScaleEngine(QwtPlot::yLeft, new QwtLinearScaleEngine); //ojaldre
   setAxisScale(QwtPlot::yLeft, d_ymin, d_ymax);
+  setAxisScale(QwtPlot::yRight, d_ymin, d_ymax); 
   setAxisTitle(QwtPlot::yLeft, "Relative Gain (dB)");
 
   QList<QColor> default_colors;
@@ -110,7 +111,7 @@ FrequencyDisplayPlot::FrequencyDisplayPlot(int nplots, QWidget* parent)
   for(int i = 0; i < d_nplots; i++) {
     d_ydata.push_back(new double[d_numPoints]);
     memset(d_ydata[i], 0x0, d_numPoints*sizeof(double));
-
+	// ACA ME PUEDO MANDAR CAGADAS
     d_plot_curve.push_back(new QwtPlotCurve(QString("Data %1").arg(i)));
     d_plot_curve[i]->attach(this);
 
@@ -171,7 +172,7 @@ FrequencyDisplayPlot::FrequencyDisplayPlot(int nplots, QWidget* parent)
     d_max_fft_data[number] = -280.0;
   }
 
-  d_marker_peak_amplitude = new QwtPlotMarker();
+  d_marker_peak_amplitude = new QwtPlotMarker();			//y eto?
   QColor default_marker_peak_amplitude_color = Qt::yellow;
   setMarkerPeakAmplitudeColor(default_marker_peak_amplitude_color);
   /// THIS CAUSES A PROBLEM!
@@ -185,7 +186,7 @@ FrequencyDisplayPlot::FrequencyDisplayPlot(int nplots, QWidget* parent)
 
   d_marker_cf= new QwtPlotMarker();
   d_marker_cf->setLineStyle(QwtPlotMarker::VLine);
-  QColor default_marker_cf_color = Qt::lightGray;
+  QColor default_marker_cf_color = Qt::lightGray;    // mm
   setMarkerCFColor(default_marker_cf_color);
   d_marker_cf->attach(this);
   d_marker_cf->hide();
@@ -336,7 +337,7 @@ FrequencyDisplayPlot::getStopFrequency() const
 }
 
 void
-FrequencyDisplayPlot::replot()
+FrequencyDisplayPlot::replot()					//mas chanchada posible aca y en la fcion de abajo
 {
   d_marker_noise_floor_amplitude->setYValue(d_noise_floor_amplitude);
   d_marker_peak_amplitude->setXValue(d_peak_frequency + d_start_frequency);
